@@ -1,0 +1,177 @@
+@import "tailwindcss";
+
+/* ── Synthwave / Retro-Futuristic Fonts ────────────────────────────────────── */
+/* Fonts loaded via index.html */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  background-color: #05050a; /* void black */
+  color: #e2e8f0;
+  overflow-x: hidden;
+}
+
+#root {
+  width: 100%;
+  min-height: 100svh;
+}
+
+/* ── Cyber Grid Background ─────────────────────────────────────────────────── */
+.cyber-grid {
+  background-image:
+    linear-gradient(rgba(0,243,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,243,255,0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-position: -1px -1px;
+}
+
+/* ── Scanlines Overlay ─────────────────────────────────────────────────────── */
+.scanlines::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,0.08) 2px,
+    rgba(0,0,0,0.08) 4px
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ── Neon Glow Utility Classes ─────────────────────────────────────────────── */
+.glow-cyan {
+  box-shadow: 0 0 15px rgba(0,243,255,0.3), 0 0 30px rgba(0,243,255,0.1);
+}
+.glow-pink {
+  box-shadow: 0 0 15px rgba(255,0,127,0.3), 0 0 30px rgba(255,0,127,0.1);
+}
+.glow-purple {
+  box-shadow: 0 0 15px rgba(139,92,246,0.3), 0 0 30px rgba(139,92,246,0.1);
+}
+.glow-text-cyan {
+  text-shadow: 0 0 10px rgba(0,243,255,0.6), 0 0 20px rgba(0,243,255,0.3);
+}
+.glow-text-pink {
+  text-shadow: 0 0 10px rgba(255,0,127,0.6), 0 0 20px rgba(255,0,127,0.3);
+}
+
+/* ── Cyber Card ────────────────────────────────────────────────────────────── */
+.cyber-card {
+  background: rgba(15, 20, 40, 0.80);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(0,243,255,0.15);
+  border-radius: 12px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.cyber-card:hover {
+  border-color: rgba(0,243,255,0.35);
+  box-shadow: 0 0 20px rgba(0,243,255,0.1);
+}
+
+/* ── Neon Button ───────────────────────────────────────────────────────────── */
+.btn-neon {
+  background: linear-gradient(135deg, #ff007f, #8b5cf6, #00f3ff);
+  border: none;
+  color: #fff;
+  font-family: 'Orbitron', monospace;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+.btn-neon::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+  transition: left 0.5s ease;
+}
+.btn-neon:hover::before { left: 100%; }
+.btn-neon:hover {
+  box-shadow: 0 0 25px rgba(0,243,255,0.5), 0 0 50px rgba(255,0,127,0.2);
+  transform: translateY(-1px);
+}
+
+/* ── Orbitron Headers ──────────────────────────────────────────────────────── */
+.font-orbitron {
+  font-family: 'Orbitron', monospace;
+}
+
+/* ── Scrollbar ─────────────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: #05050a; }
+::-webkit-scrollbar-thumb { background: rgba(0,243,255,0.3); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(0,243,255,0.6); }
+
+/* ── Neon Range Slider ─────────────────────────────────────────────────────── */
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #00f3ff;
+  cursor: pointer;
+  border: 2px solid #05050a;
+  box-shadow: 0 0 8px rgba(0,243,255,0.8);
+}
+input[type=range]::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #00f3ff;
+  cursor: pointer;
+  border: 2px solid #05050a;
+  box-shadow: 0 0 8px rgba(0,243,255,0.8);
+}
+
+/* ── Smooth transitions (exclude SVG/canvas to avoid recharts jank) ────────── */
+*:not(svg):not(path):not(rect):not(circle):not(line):not(polyline):not(polygon):not(text):not(tspan) {
+  transition-property: color, background-color, border-color, opacity, box-shadow, transform, width;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+/* ── Neon horizontal rule ──────────────────────────────────────────────────── */
+.neon-divider {
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0,243,255,0.4), rgba(255,0,127,0.3), transparent);
+}
+
+/* ── Pulse animation for logo ──────────────────────────────────────────────── */
+@keyframes neon-pulse {
+  0%, 100% { box-shadow: 0 0 10px rgba(0,243,255,0.4), 0 0 20px rgba(255,0,127,0.2); }
+  50%       { box-shadow: 0 0 20px rgba(0,243,255,0.7), 0 0 40px rgba(255,0,127,0.4); }
+}
+.neon-pulse { animation: neon-pulse 3s ease-in-out infinite; }
+
+/* ── Floating cyber grid flare ─────────────────────────────────────────────── */
+@keyframes flare-move {
+  0%   { transform: translate(0, 0); }
+  50%  { transform: translate(20px, -15px); }
+  100% { transform: translate(0, 0); }
+}
+.bg-flare {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  animation: flare-move 8s ease-in-out infinite;
+}
